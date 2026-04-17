@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📊 Analysis History</h2>
+
+    <!-- SCROLL FIX -->
+    <div style="max-height: 400px; overflow-y: auto;">
+
+        <table border="1" style="width:100%; border-collapse: collapse;">
+
+            <tr>
+                <th>Text</th>
+                <th>Sentiment</th>
+                <th>Confidence</th>
+            </tr>
+
+            {% for record in records %}
+            <tr>
+                <td>{{ record.text }}</td>
+
+                <td class="
+                    {% if record.sentiment == 'Positive' %}
+                        positive
+                    {% elif record.sentiment == 'Negative' %}
+                        negative
+                    {% else %}
+                        neutral
+                    {% endif %}
+                ">
+                    {{ record.sentiment }}
+                </td>
+
+                <td>{{ record.confidence }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <br>
+    <a href="/home">⬅ Back</a>
+
+</div>
+
+</body>

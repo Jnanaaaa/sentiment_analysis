@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Sentiment Analyzer</title>
+
+    <!-- LINK CSS (VERY IMPORTANT) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✨ AI Sentiment Analyzer</h1>
+
+    <form method="POST">
+        <textarea name="text" placeholder="Enter text..." required></textarea>
+        <br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    <div class="result-box">
+        <h2>{{ result }}</h2>
+        <p>{{ confidence }}</p>
+    </div>
+
+    <h3>Sentence Analysis</h3>
+
+    {% for item in sentence_results %}
+    <div class="sentence-card">
+        <p><b>{{ item.sentence }}</b></p>
+        <p>{{ item.sentiment }} | {{ item.confidence }}</p>
+    </div>
+    {% endfor %}
+
+    <br>
+    <a href="/history">📜 View History</a>
+
+</div>
+
+</body>
